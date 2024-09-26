@@ -24,6 +24,11 @@ export default function App() {
     setMovie(data);
   };
 
+   // This will run on the first render but not on subsquent renders
+   useEffect(() => {
+    getMovie("Clueless");
+  }, []);
+
   // We pass the getMovie function as a prop called moviesearch
   return (
     <div className="App">

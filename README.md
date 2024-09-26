@@ -201,3 +201,72 @@ Make a loaded function that returns the JSX if the data exists.
 Make a loading function that returns the JSX if it doesn't.
 Use a ternary operator to determine which function we return.
 We are using functions because the JSX expressions aren't evaluated until the function is invoked, while just saving a JSX expression in a variable would mean they'd get evaluated right away - still triggering the error.
+
+form: 
+    <!-- export default function MovieDisplay({ movie }){
+    // Function to return loaded JSX
+    const loaded = () => {
+        return (
+        <>
+            <h1>{movie.Title}</h1>
+            <h2>{movie.Genre}</h2>
+            <img src={movie.Poster} alt={movie.Title} />
+            <h2>{movie.Year}</h2>
+        </>
+        );
+    };
+    // Function to return loading JSX
+    const loading = () => {
+        return <h1>No Movie to Display</h1>;
+    };
+    // Ternary operator will determine which functions JSX we will return
+    return movie ? loaded() : loading();
+    } -->
+
+Awesome, now our app is working! It would be nice if a movie showed up right away, though. The problem is, we can't just make a call to getMovie in the body of the App component because it would:
+
+- Make the fetch call...
+- Update the state...
+- Re-render the component...
+- Invoke getMovie again...
+- Create an infinite loop.
+
+Is there a way to have something happen when a component loads without repeating on every render? Yes!
+
+useEffect
+The React useEffect hook allows us to create things that only happen at certain times.
+
+The fundamental syntax of useEffect is as follows. (useEffect(() => {}, []);)
+
+Notice the first argument is a function. That function will run once when the component first loads. The second argument is an array. On each render of the component, the items in the array are compared to their value on the previous render, and if they are a different value the function will run again. This gives you a way to create logic in a component that doesn't run on every render.
+
+This is a perfect place to make a call to getMovie!
+
+App.js: 
+    <!-- import {useState, useEffect} from "react";
+    import logo from "./logo.svg";
+    import "./App.css";
+    import MovieDisplay from "./components/MovieDisplay";
+    import Form from "./components/Form";
+    export default function App() {
+    const apiKey = "98e3fb1f";
+    const [movie, setMovie] = useState(null);
+    const getMovie = async (searchTerm) => {
+        const response = await fetch(
+        `http://www.omdbapi.com/?apikey=${apiKey}&t=${searchTerm}`
+        );
+        const data = await response.json();
+        setMovie(data);
+    };
+    // This will run on the first render but not on subsquent renders
+    useEffect(() => {
+        getMovie("Clueless");
+    }, []);
+    return (
+        <div className="App">
+        <Form moviesearch={getMovie} />
+        <MovieDisplay movie={movie} />
+        </div>
+    );
+    } -->
+
