@@ -31,3 +31,15 @@ apikey is your API key.
 t is the title of the movie you are searching for.
 Note: Every API is different, so some don't need API keys, some need them in the URL, some need them sent in request headers, some need multiple security keys. Never assume anything about the API other than you need to read its documentation.
 
+Our Components
+We will have two additional components in this build: a component that displays movie data, and a form that we can use to type which movie we want to search for and display.
+
+Convention is to create a components folder in your src folder and build any additional components in there.
+
+Inside src/components/ you should create two files:
+
+MovieDisplay.js
+Form.js
+Now let's put the React boilerplate in both of them.
+
+MovieDisplay.js
