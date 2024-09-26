@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 // Import our components
@@ -8,7 +7,7 @@ import Form from "./components/Form";
 
 export default function App() {
   // Constant with your API Key
-  const apiKey = "98e3fb1f";
+  const apiKey = "82acf864";
 
   // State to hold movie data
   const [movie, setMovie] = useState(null);
@@ -29,7 +28,7 @@ export default function App() {
   return (
     <div className="App">
       <Form moviesearch={getMovie} />
-      <MovieDisplay />
+      <MovieDisplay movie={movie}/>
     </div>
   );
 }

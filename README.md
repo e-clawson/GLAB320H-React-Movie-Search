@@ -97,3 +97,85 @@ Let's head over to App and do the following:
 - Create a function that is given the search term, then does the fetch request for the movie data, and then stores it in state.
 - Pass the function down to Form via props.
 
+app.jsx: 
+    <!-- import {useState, useEffect} from "react";
+    import logo from "./logo.svg";
+    import "./App.css";
+    import MovieDisplay from "./components/MovieDisplay";
+    import Form from "./components/Form";
+    export default function App() {
+    // Constant with your API Key
+    const apiKey = "98e3fb1f";
+    // State to hold movie data
+    const [movie, setMovie] = useState(null);
+    // Function to get movies
+    const getMovie = async(searchTerm) => {
+        // Make fetch request and store the response
+        const response = await fetch(
+        `http://www.omdbapi.com/?apikey=${apiKey}&t=${searchTerm}`
+        );
+        // Parse JSON response into a JavaScript object
+        const data = await response.json();
+        // Set the Movie state to the received data
+        setMovie(data);
+    };
+    // We pass the getMovie function as a prop called moviesearch
+    return (
+        <div className="App">
+        <Form moviesearch={getMovie} />
+        <MovieDisplay />
+        </div>
+    );
+    } -->
+
+Finishing the Form
+Now that we passed down the getMovie function to Form, which allows us to pass the search term to our App component, let's wire up the form by doing the following:
+
+Create state to track our form value.
+Add a handleChange function to control our form value.
+Add a handleSubmit function that passes the formData to getMovie via the moviesearch prop.
+
+    Form.js
+        <!-- import {useState, useEffect} from "react";
+        export default function Form (props) {
+        // State to hold the data of our form
+        const [formData, setFormData] = useState({
+            searchterm: "",
+        });
+        // handleChange - updates formData when we type into form
+        const handleChange = (event) => {
+            // Use the event object to detect key, and value to update
+            setFormData({ ...formData, [event.target.name]: event.target.value });
+        };
+        const handleSubmit = (event) => {
+            // Prevent page from refreshing on form submission
+            event.preventDefault();
+            // Pass the search term to moviesearch prop, which is App's getMovie function
+            props.moviesearch(formData.searchterm);
+        };
+        return (
+            <div>
+            <form onSubmit={handleSubmit}>
+                <input
+                type="text"
+                name="searchterm"
+                onChange={handleChange}
+                value={formData.searchterm}
+                />
+                <input type="submit" value="submit" />
+            </form>
+            </div>
+        );
+        } -->
+
+Now, type a movie into the form and hit submit. Open up your devtools and see if everything worked by checking two things:
+
+Under the network tab, look for the successful request and examine the data there. This is a great place to diagnose when your fetch calls aren't behaving as expected.
+If you don't have it already, make sure to download the React DevTools Chrome extension, and then look to see if the state in your App component has updated as expected.
+So now we have the data, we just have to render it on the screen. How are we going to do that?
+
+Displaying Our Movie
+Currently our App component has the data, and we need to send it to our MovieDisplay component. We can do this by simply passing the state as props!
+
+<!-- App.js - add the following on line 31- <MovieDisplay movie={movie}/>  -->
+
