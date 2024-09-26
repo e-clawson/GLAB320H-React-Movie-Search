@@ -192,3 +192,12 @@ MovieDisplay.js
         </>
     );
     } -->
+
+Now you may notice you are getting an error saying "cannot read property title of null." React doesn't know to not render MovieDisplay until we have movie data, so it's attempting to render a movie we haven't gotten yet the moment the website loads, triggering this error.
+
+To fix this, we need to make sure movie data exists. We will do the following:
+
+Make a loaded function that returns the JSX if the data exists.
+Make a loading function that returns the JSX if it doesn't.
+Use a ternary operator to determine which function we return.
+We are using functions because the JSX expressions aren't evaluated until the function is invoked, while just saving a JSX expression in a variable would mean they'd get evaluated right away - still triggering the error.
