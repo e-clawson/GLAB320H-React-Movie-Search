@@ -84,3 +84,16 @@ Form.js
         </div>
     );
     } -->
+
+State Management
+Here, we run into an issue. When we make the AJAX call for the movie data, we need somewhere to save the data - we need state. Creating state is simple enough, but the data then needs to later be shipped to the MovieDisplay component, which is a sibling (both components are currently children of App).
+
+In React, information only moves in one direction, down. There is no practical way to send the state from Form to MovieDisplay, so they'll need to house the data in a mutual parent, App. In order to solve this, we'll need to implement the concept of "lifting state" that we discussed earlier.
+
+While App doesn't need the movie data, its children do, so it will become the bearer of the data.
+
+Let's head over to App and do the following:
+- Create state to hold our movie data.
+- Create a function that is given the search term, then does the fetch request for the movie data, and then stores it in state.
+- Pass the function down to Form via props.
+
