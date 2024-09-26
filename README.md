@@ -43,3 +43,44 @@ Form.js
 Now let's put the React boilerplate in both of them.
 
 MovieDisplay.js
+    <!-- export default function MovieDisplay(props) {
+    // The component must return some JSX
+    return <h1>The MovieDisplay Component</h1>;
+    }; -->
+
+Form.js
+    <!-- export default function Form(props){
+    // The component must return some JSX
+    return <h1>The Form Component</h1>;
+    }; -->
+
+Now let's import these components and use them in src/App.js.
+    <!-- import { useState, useEffect } from "react";
+    import logo from "./logo.svg";
+    import "./App.css";
+     // Import our components
+    import MovieDisplay from "./components/MovieDisplay";
+    import Form from "./components/Form"; 
+    export default function App() {
+    return (
+        <div className="App">
+        <Form />
+        <MovieDisplay />
+        </div>
+    );
+    } -->
+
+Building out the Form
+Inside our Form component, we need to create a form with a text input and submit button.
+
+Form.js
+    <!-- export default function Form(props) {
+    return (
+        <div>
+        <form>
+            <input type="text" />
+            <input type="submit" value="submit" />
+        </form>
+        </div>
+    );
+    } -->
