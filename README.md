@@ -179,3 +179,16 @@ Currently our App component has the data, and we need to send it to our MovieDis
 
 <!-- App.js - add the following on line 31- <MovieDisplay movie={movie}/>  -->
 
+Now let's display the data in MovieDisplay.js.
+
+MovieDisplay.js
+    <!-- export default function MovieDisplay({ movie }) {
+    return (
+        <>
+        <h1>{movie.Title}</h1>
+        <h2>{movie.Genre}</h2>
+        <img src={movie.Poster} alt={movie.Title} />
+        <h2>{movie.Year}</h2>
+        </>
+    );
+    } -->
